@@ -102,9 +102,6 @@
 @media (max-width: 991.98px) {
   #register-scene .register-container {
     padding: 2em 6em;
-  }
-
-  #register-scene .register-container {
     overflow-y: none;
     height: 100%;
     position: relative;

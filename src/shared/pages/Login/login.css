@@ -76,7 +76,13 @@
   rotate: 180deg;
 }
 
-#login-scene .login-container *{
+#login-scene .login-container {
+  overflow-y: auto;
+  height: 100vh;
+  position: relative;
+}
+
+#login-scene .login-container * {
   z-index: 1;
   transition: all 0.2s;
 }
@@ -99,12 +105,14 @@
   #login-scene {
     overflow: auto;
   }
-  
 }
 
 @media (max-width: 991.98px) {
   #login-scene .login-container {
     padding: 2em 6em;
+    overflow-y: none;
+    height: 100%;
+    position: relative;
   }
 }
 

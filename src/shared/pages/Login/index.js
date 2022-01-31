@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams, useNavigate } from "react-router-dom";
 import { Tooltip } from "bootstrap";
+
+import Parse from "parse/dist/parse.min.js";
 
 import Button from "../../components/atoms/Button";
 import Detail from "../../media/images/ret1.svg";
@@ -9,13 +11,19 @@ import DetailSecondary from "../../media/images/ret2.svg";
 import "./login.css";
 
 export default function Login() {
+  const navigate = useNavigate();
+  
+  const [searchParams, setSearchParams] = useSearchParams();
   const [updatingContent, setUpdatingContent] = useState(false);
   const [emailInputMessage, setEmailInputMessage] =
     useState("Insira seu e-mail");
   const [passwordInputMessage, setPasswordlInputMessage] =
     useState("Insira sua senha");
+  const [successMessage, setSuccsessMessage] = useState("");
+  const [warningMessage, setWarningMessage] = useState("");
   const [emailValue, setEmail] = useState("");
   const [passwordValue, setPassword] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
   const [validation, setValidation] = useState({
     validEmail: false,
     validPassword: false,
@@ -30,14 +38,70 @@ export default function Login() {
       document.querySelectorAll('[data-bs-toggle="tooltip"]')
     );
 
-    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new Tooltip(tooltipTriggerEl);
     });
+
+    if (searchParams.get("status") !== undefined) {
+      switch (searchParams.get("status")) {
+        case "register-successful":
+          setSuccsessMessage(
+            "Usuário registrado com sucesso! Realize o login."
+          );
+          break;
+        default:
+          break;
+      }
+    }
   }, []);
 
-  function authenticate() {
+  const getCurrentUser = async function () {
+    const currentUser = await Parse.User.current();
+    setCurrentUser(currentUser);
+    return currentUser;
+  };
+
+  async function authenticate() {
     if (validation.validEmail === true && validation.validPassword === true) {
       setUpdatingContent(true);
+
+      try {
+        const loggedInUser = await Parse.User.logIn(emailValue, passwordValue);
+
+        setSuccsessMessage(
+          "Usuário autenticado com sucesso! Redirecionando..."
+        );
+        await Parse.User.current();
+
+        setPassword("");
+
+        getCurrentUser();
+
+        setInterval(() => {
+          navigate("/home");
+        }, 2000);
+      } catch (error) {
+        console.log(error);
+        switch (error.code) {
+          case 101:
+            setWarningMessage("E-mail e/ou senha inválido(s)");
+            break;
+          case 200:
+            setWarningMessage("É necessário especificar um e-mail válido");
+            break;
+          case 201:
+            setWarningMessage("É necessário especificar uma senha válida");
+            break;
+          case 205:
+            setWarningMessage("É necessário especificar um e-mail válido");
+            break;
+          default:
+            break;
+        }
+
+        setPassword("");
+        setUpdatingContent(false);
+      }
     }
   }
 
@@ -54,9 +118,29 @@ export default function Login() {
               <h2 className="app-logo text-center mb-5">social.io</h2>
             </div>
             <div>
-              <h4 className="text-secondary text-center  mb-5">
-                conectando 215613 pessoas atualmente
-              </h4>
+              {warningMessage !== "" || successMessage !== "" ? (
+                <div
+                  class={`alert alert-${
+                    warningMessage !== "" ? "warning" : "success"
+                  } alert-dismissible fade show`}
+                  role="alert"
+                >
+                  {warningMessage !== "" ? warningMessage : successMessage}
+                  <button
+                    type="button"
+                    class="btn-close"
+                    aria-label="Close"
+                    onClick={() => {
+                      setWarningMessage("");
+                      setSuccsessMessage("");
+                    }}
+                  ></button>
+                </div>
+              ) : (
+                <h4 className="text-secondary text-center  mb-5">
+                  conectando 215613 pessoas atualmente
+                </h4>
+              )}
             </div>
             <div>
               <form>
