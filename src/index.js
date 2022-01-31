@@ -6,8 +6,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import Parse from 'parse/dist/parse.min.js';
-import * as ParseConfig from "./config/ParseConfig"
+import Parse from "parse/dist/parse.min.js";
+import * as ParseConfig from "./config/ParseConfig";
 
 import Home from "./shared/pages/Home";
 import Login from "./shared/pages/Login";
@@ -15,8 +15,12 @@ import Register from "./shared/pages/Register";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
+import Autheticator from "./shared/helper/Authenticator";
 
-Parse.initialize(ParseConfig.PARSE_APPLICATION_ID, ParseConfig.PARSE_JAVASCRIPT_KEY);
+Parse.initialize(
+  ParseConfig.PARSE_APPLICATION_ID,
+  ParseConfig.PARSE_JAVASCRIPT_KEY
+);
 Parse.serverURL = ParseConfig.PARSE_HOST_URL;
 
 const AnimatedRouter = () => {
@@ -27,8 +31,16 @@ const AnimatedRouter = () => {
         <Routes>
           <Route path="login" element={<Login />} />
           <Route path="" element={<Login />} />
-          <Route path="inicio" element={<Home />} />
+          <Route
+            path="inicio"
+            element={
+              <Autheticator>
+                <Home />
+              </Autheticator>
+            }
+          />
           <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

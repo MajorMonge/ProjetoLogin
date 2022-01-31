@@ -12,7 +12,7 @@ import "./login.css";
 
 export default function Login() {
   const navigate = useNavigate();
-  
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [updatingContent, setUpdatingContent] = useState(false);
   const [emailInputMessage, setEmailInputMessage] =
@@ -49,6 +49,12 @@ export default function Login() {
             "Usuário registrado com sucesso! Realize o login."
           );
           break;
+        case "invalid-session":
+          setWarningMessage("Sessão inválida. Realize o login novamente.");
+          break;
+        case "logout":
+          setWarningMessage("Logout realizado com sucesso.");
+          break;
         default:
           break;
       }
@@ -78,7 +84,7 @@ export default function Login() {
         getCurrentUser();
 
         setInterval(() => {
-          navigate("/home");
+          navigate("/inicio");
         }, 2000);
       } catch (error) {
         console.log(error);
