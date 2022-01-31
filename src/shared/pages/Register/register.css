@@ -1,7 +1,3 @@
-#register-scene {
-  overflow: hidden;
-}
-
 #register-scene > div {
   min-height: 100vh;
 }
@@ -76,6 +72,12 @@
   rotate: 180deg;
 }
 
+#register-scene .register-container {
+  overflow-y: auto;
+  height: 100vh;
+  position: relative;
+}
+
 #register-scene .register-container * {
   z-index: 1;
   transition: all 0.2s;
@@ -95,15 +97,17 @@
   #register-scene > div {
     min-height: 100vh;
   }
-
-  #register-scene {
-    overflow: auto;
-  }
 }
 
 @media (max-width: 991.98px) {
   #register-scene .register-container {
     padding: 2em 6em;
+  }
+
+  #register-scene .register-container {
+    overflow-y: none;
+    height: 100%;
+    position: relative;
   }
 }
 
@@ -121,7 +125,11 @@
     padding: 2em 2em;
   }
 
-  #register-scene .register-splash-container .splash-overlay .splash-description h2 {
+  #register-scene
+    .register-splash-container
+    .splash-overlay
+    .splash-description
+    h2 {
     font-family: "Roboto Slab";
     font-weight: bold;
     font-size: 1.55em;
@@ -132,7 +140,11 @@
     padding: 2em 3em;
   }
 
-  #register-scene .register-splash-container .splash-overlay .splash-description h2 {
+  #register-scene
+    .register-splash-container
+    .splash-overlay
+    .splash-description
+    h2 {
     font-family: "Roboto Slab";
     font-weight: bold;
     font-size: 1.2em;

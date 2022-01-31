@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import Parse from "parse/dist/parse.min.js";
+
+import { Link, useNavigate } from "react-router-dom";
 import { Tooltip } from "bootstrap";
 
 import Button from "../../components/atoms/Button";
@@ -7,6 +9,8 @@ import Button from "../../components/atoms/Button";
 import "./register.css";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const [updatingContent, setUpdatingContent] = useState(false);
   const [nameInputMessage, setNameInputMessage] = useState("Insira seu nome");
   const [emailInputMessage, setEmailInputMessage] =
@@ -15,6 +19,7 @@ export default function Register() {
     useState("Insira sua senha");
   const [confirmPasswordInputMessage, setConfirmPasswordlInputMessage] =
     useState("Confirme sua senha");
+  const [warningMessage, setWarningMessage] = useState("");
   const [nameValue, setName] = useState("");
   const [emailValue, setEmail] = useState("");
   const [passwordValue, setPassword] = useState("");
@@ -40,22 +45,83 @@ export default function Register() {
     });
   }, []);
 
-  function authenticate() {
-    if (validation.validEmail === true && validation.validPassword === true) {
+  async function registerUser() {
+    if (
+      validation.validPassword === true &&
+      validation.validConfirmPassword == true &&
+      passwordValue === confirmPasswordValue
+    ) {
       setUpdatingContent(true);
+      try {
+        const createdUser = await Parse.User.signUp(emailValue, passwordValue, {
+          email: emailValue,
+          name: nameValue,
+        });
+
+        console.log(
+          `Success! User ${createdUser.getUsername()} was successfully created!`
+        );
+        
+        navigate("/login?status=register-successful");
+      } catch (error) {
+        switch (error.code) {
+          case 200:
+            setWarningMessage("É necessário especificar um e-mail válido");
+            break;
+          case 201:
+            setWarningMessage("É necessário especificar uma senha válida");
+            break;
+          case 202:
+            setWarningMessage(
+              "Já existe um usuário cadastrado com o e-mail informado"
+            );
+            break;
+          case 203:
+            setWarningMessage(
+              "Já existe um usuário cadastrado com o e-mail informado"
+            );
+            break;
+          case 204:
+            setWarningMessage("É necessário especificar um e-mail válido");
+            break;
+          default:
+            break;
+        }
+        setUpdatingContent(false);
+      }
+    } else if (validation.validEmail === true) {
+      setWarningMessage("As senhas devem ser iguais");
     }
   }
 
   return (
     <div id="register-scene" className="container-flex p-0">
       <div className="row g-0">
-        <div className="order-1 order-lg-1 col-12 col-lg d-grid align-content-center">
-          <div className="container register-container h-100">
+        <div className="order-1 order-lg-1 col-12 col-lg h-100">
+          <div className="container register-container  d-grid align-content-center">
             <div>
               <h2 className="app-logo text-center mb-5">social.io</h2>
             </div>
             <div>
               <h4 className="text-secondary text-center  mb-5">registre-se</h4>
+              {warningMessage !== "" ? (
+                <div
+                  class="alert alert-warning alert-dismissible fade show"
+                  role="alert"
+                >
+                  {warningMessage}
+                  <button
+                    type="button"
+                    class="btn-close"
+                    aria-label="Close"
+                    onClick={() => {
+                      setWarningMessage("");
+                    }}
+                  ></button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div>
               <form>
@@ -135,7 +201,7 @@ export default function Register() {
                     value={confirmPasswordValue}
                     onChange={(e) => {
                       setConfirmPassword(e.target.value);
-                      checkValidation(e.target, "validPassword");
+                      checkValidation(e.target, "validConfirmPassword");
                     }}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
@@ -153,7 +219,7 @@ export default function Register() {
                   onClick={(e) => {
                     e.preventDefault();
                     e.target.parentElement.parentElement.reportValidity();
-                    authenticate();
+                    registerUser();
                   }}
                 >
                   {updatingContent === false ? (

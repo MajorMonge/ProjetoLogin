@@ -1,16 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
+//import reportWebVitals from './reportWebVitals';
+
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+
+import Parse from 'parse/dist/parse.min.js';
+import * as ParseConfig from "./config/ParseConfig"
 
 import Home from "./shared/pages/Home";
 import Login from "./shared/pages/Login";
 import Register from "./shared/pages/Register";
 
 import "bootstrap/dist/css/bootstrap.css";
-
 import "./index.css";
-//import reportWebVitals from './reportWebVitals';
+
+Parse.initialize(ParseConfig.PARSE_APPLICATION_ID, ParseConfig.PARSE_JAVASCRIPT_KEY);
+Parse.serverURL = ParseConfig.PARSE_HOST_URL;
 
 const AnimatedRouter = () => {
   const location = useLocation();
