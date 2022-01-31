@@ -1,24 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Home from "./shared/pages/Home";
 import Login from "./shared/pages/Login";
+import Register from "./shared/pages/Register";
 
 import "bootstrap/dist/css/bootstrap.css";
 
 import "./index.css";
 //import reportWebVitals from './reportWebVitals';
 
+const AnimatedRouter = () => {
+  const location = useLocation();
+  return (
+    <TransitionGroup>
+      <CSSTransition key={location.key} classNames="page" timeout={0}>
+        <Routes>
+          <Route path="login" element={<Login />} />
+          <Route path="" element={<Login />} />
+          <Route path="inicio" element={<Home />} />
+          <Route path="register" element={<Register />} />
+        </Routes>
+      </CSSTransition>
+    </TransitionGroup>
+  );
+};
+
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path={("login", "")} element={<Login />} />
-        <Route path="inicio" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <AnimatedRouter />
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

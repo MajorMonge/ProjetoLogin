@@ -4,6 +4,7 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: "Lato", sans-serif;
+  overflow: hidden;
 }
 
 a {
@@ -34,3 +35,44 @@ a:focus {
   border: 1px solid #70707033;
   border-radius: 4px;
 }
+
+/* Page animation */
+
+.page {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  overflow: hidden;
+}
+
+.page-enter {
+  opacity: 0;
+  overflow: hidden;
+}
+
+.page-enter-active {
+  opacity: 1;
+  transition: opacity 500ms, transform 2300ms;
+  overflow: hidden;
+}
+
+.page-exit {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.page-exit-active {
+  opacity: 0;
+  transition: opacity 500ms, transform 2300ms;
+  overflow: hidden;
+}
+
+@media (max-width: 991.98px) {
+  body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Lato", sans-serif;
+    overflow-y: auto;
+  }
+}
+
