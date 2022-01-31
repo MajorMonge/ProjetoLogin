@@ -1,0 +1,129 @@
+#login-scene > div {
+  min-height: 100vh;
+}
+
+#login-scene .login-splash-container {
+  height: 100%;
+  background-image: url("../../media/images/login_media_unsplash.jpg");
+  background-size: cover;
+  background-position: bottom center;
+}
+
+#login-scene .login-splash-container .splash-overlay {
+  background: transparent
+    linear-gradient(
+      141deg,
+      #1d8f99 0%,
+      #0688ac 21%,
+      #417db6cc 42%,
+      #736daf99 62%,
+      #995a9766 81%,
+      #ae4a7133 100%
+    )
+    0% 0% no-repeat padding-box;
+  height: 100%;
+  padding: 4em 4em;
+}
+
+#login-scene .login-splash-container .splash-overlay .splash-description {
+  font-family: "Roboto Slab";
+  font-weight: bold;
+}
+
+#login-scene .login-detail-top {
+  position: absolute;
+  overflow: hidden;
+  z-index: 0;
+}
+
+#login-scene .login-detail-top .dt-1 {
+  position: relative;
+  top: -12em;
+  left: -5em;
+}
+
+#login-scene .login-detail-top .dt-2 {
+  position: relative;
+  top: -8em;
+  left: -15em;
+}
+
+#login-scene .login-detail-bottom {
+  position: absolute;
+  overflow: hidden;
+  z-index: 0;
+  bottom: 0;
+  right: 50%;
+}
+
+#login-scene .login-detail-bottom .dt-1 {
+  position: relative;
+  bottom: -10em;
+  right: -12em;
+  rotate: 180deg;
+}
+
+#login-scene .login-detail-bottom .dt-2 {
+  position: relative;
+  bottom: -13em;
+  right: 0em;
+  rotate: 180deg;
+}
+
+#login-scene .login-container {
+  z-index: 1;
+}
+
+@media (min-width: 1200px) {
+  #login-scene .login-container {
+    padding: 2em 12em;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  #login-scene .login-container {
+    padding: 2em 8em;
+  }
+
+  #login-scene > div {
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 991.98px) {
+  #login-scene .login-container {
+    padding: 2em 6em;
+  }
+}
+
+@media (max-width: 767.98px) {
+  #login-scene .login-container {
+    padding: 2em 4em;
+  }
+
+  #login-scene .login-splash-container {
+    min-height: 40vh;
+  }
+
+  #login-scene .login-splash-container .splash-overlay {
+    height: 100%;
+    padding: 2em 2em;
+  }
+
+  #login-scene .login-splash-container .splash-overlay .splash-description h2 {
+    font-family: "Roboto Slab";
+    font-weight: bold;
+    font-size: 1.55em;
+  }
+}
+@media (max-width: 575.98px) {
+  #login-scene .login-container {
+    padding: 2em 3em;
+  }
+
+  #login-scene .login-splash-container .splash-overlay .splash-description h2 {
+    font-family: "Roboto Slab";
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+}

@@ -1,8 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Home from "./shared/pages/Home";
 import Login from "./shared/pages/Login";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "popper.js/dist/popper";
+
 import "./index.css";
 //import reportWebVitals from './reportWebVitals';
 
@@ -10,8 +16,7 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<> Teste </>} />
-        <Route path="login" element={<Login />} />
+        <Route path={("login", "")} element={<Login />} />
         <Route path="inicio" element={<Home />} />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,43 @@
+.app-button a,
+.app-button button {
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 4px;
+  opacity: 1;
+  border: none;
+  text-align: center;
+  font-size: 1.25em;
+  min-width: 120px;
+  padding: 0.34em 0.75em;
+  transition: all 0.1s;
+}
+
+.app-button.primary a,
+.app-button.primary button {
+  background: #3d7eb6 0% 0% no-repeat padding-box;
+  color: white;
+}
+
+.app-button.secondary a,
+.app-button.secondary button {
+  background: #aa4d78 0% 0% no-repeat padding-box;
+  color: white;
+}
+
+.app-button.tertiary a,
+.app-button.tertiary button {
+  background: transparent;
+  box-shadow: none;
+  border: 1px solid #70707033;
+  color: #434343;
+}
+
+.app-button a:hover,
+.app-button button:hover {
+  filter: contrast(1.5);
+  box-shadow: 0px 3px 8px #00000035;
+}
+
+.app-button a:focus,
+.app-button button:focus {
+  filter: contrast(1.5);
+}
