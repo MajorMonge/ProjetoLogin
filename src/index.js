@@ -6,8 +6,6 @@ import Home from "./shared/pages/Home";
 import Login from "./shared/pages/Login";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import "popper.js/dist/popper";
 
 import "./index.css";
 //import reportWebVitals from './reportWebVitals';

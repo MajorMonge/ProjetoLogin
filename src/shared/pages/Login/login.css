@@ -1,3 +1,7 @@
+#login-scene {
+  overflow: hidden;
+}
+
 #login-scene > div {
   min-height: 100vh;
 }
@@ -34,6 +38,7 @@
   position: absolute;
   overflow: hidden;
   z-index: 0;
+  pointer-events: none;
 }
 
 #login-scene .login-detail-top .dt-1 {
@@ -54,6 +59,7 @@
   z-index: 0;
   bottom: 0;
   right: 50%;
+  pointer-events: none;
 }
 
 #login-scene .login-detail-bottom .dt-1 {
@@ -70,8 +76,9 @@
   rotate: 180deg;
 }
 
-#login-scene .login-container {
+#login-scene .login-container *{
   z-index: 1;
+  transition: all 0.2s;
 }
 
 @media (min-width: 1200px) {
@@ -88,6 +95,11 @@
   #login-scene > div {
     min-height: 100vh;
   }
+
+  #login-scene {
+    overflow: auto;
+  }
+  
 }
 
 @media (max-width: 991.98px) {

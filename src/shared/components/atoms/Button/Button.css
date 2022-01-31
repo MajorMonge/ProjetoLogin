@@ -31,10 +31,23 @@
   color: #434343;
 }
 
+.app-button.mute a,
+.app-button.mute button {
+  background: #c0c0c0 0% 0% no-repeat padding-box;
+  color: rgb(240, 240, 240);
+}
+
 .app-button a:hover,
 .app-button button:hover {
   filter: contrast(1.5);
   box-shadow: 0px 3px 8px #00000035;
+}
+
+
+.app-button.mute a:hover,
+.app-button.mute button:hover {
+  filter: contrast(1);
+  cursor: default;
 }
 
 .app-button a:focus,

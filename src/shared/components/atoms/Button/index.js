@@ -9,5 +9,13 @@ export default function Button(props) {
     button = <Link {...props}>{props.children}</Link>;
   }
 
-  return <div className={`app-button ${props.buttonStyle}`}>{button}</div>;
+  return (
+    <div
+      className={`app-button ${props.buttonstyle} ${
+        props.disabled === true ? "mute" : ""
+      }`}
+    >
+      {button}
+    </div>
+  );
 }
