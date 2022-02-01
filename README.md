@@ -6,7 +6,11 @@ Este projeto consiste no desenvolvimento de uma tela de login funcional com o in
 
 Frameworks e dependências:
 
-- React v17.0.2.
+- React v17.0.2;
+- React Router v6;
+- React Transition Group;
+- Parse;
+- Bootstrap.
 
 ### Instalação e preparo do projeto
 
@@ -18,7 +22,9 @@ Execute o seguinte comando dentro da pasta do projeto para instalação das dep�
 npm i
 ```
 
-Após a instalação das dependências, execute o comando ```npm start``` para iniciar o projeto no modo de desenvolvimento.
+Crie uma aplicação na plataforma back4app.com e adicione a coluna ```name``` na classe ```User```. Copie/Gere as chaves de Application ID e JavaScript key.
+
+Crie um arquivo ```.env```, defina as váriaveis REACT_APP_PARSE_APPLICATION_ID e REACT_APP_PARSE_JAVASCRIPT_KEY e execute o comando ```npm start``` para iniciar o projeto no modo de desenvolvimento.
 
 ### Scripts de utilização
 
