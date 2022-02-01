@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 //import reportWebVitals from './reportWebVitals';
 
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Parse from "parse/dist/parse.min.js";
@@ -25,6 +25,7 @@ Parse.serverURL = ParseConfig.PARSE_HOST_URL;
 
 const AnimatedRouter = () => {
   const location = useLocation();
+
   return (
     <TransitionGroup>
       <CSSTransition key={location.key} classNames="page" timeout={0}>
@@ -41,6 +42,7 @@ const AnimatedRouter = () => {
           />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>
