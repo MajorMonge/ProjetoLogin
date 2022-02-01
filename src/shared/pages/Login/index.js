@@ -52,7 +52,7 @@ export default function Login() {
         case "invalid-session":
           setWarningMessage("Sessão inválida. Realize o login novamente.");
           break;
-        case "logout":
+        case "logout-successful":
           setWarningMessage("Logout realizado com sucesso.");
           break;
         default:
