@@ -2,6 +2,7 @@
 
 Este projeto consiste no desenvolvimento de uma tela de login funcional com o intuito de avaliar o conhecimento do desenvolvedor. 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e30092c1-1881-4971-b649-b54eef3d9406/deploy-status)](https://app.netlify.com/sites/sleepy-chandrasekhar-a181e1/deploys)
 ### Tech
 
 Frameworks e dependências:
