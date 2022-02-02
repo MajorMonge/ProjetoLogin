@@ -3,11 +3,19 @@ import ReactDOM from "react-dom";
 
 //import reportWebVitals from './reportWebVitals';
 
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Parse from "parse/dist/parse.min.js";
 import * as ParseConfig from "./config/ParseConfig";
+
+import Autheticator from "./shared/helper/Authenticator";
 
 import Home from "./shared/pages/Home";
 import Login from "./shared/pages/Login";
@@ -15,7 +23,9 @@ import Register from "./shared/pages/Register";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "./index.css";
-import Autheticator from "./shared/helper/Authenticator";
+
+import '@popperjs/core'
+import "bootstrap/dist/js/bootstrap.bundle";
 
 Parse.initialize(
   ParseConfig.PARSE_APPLICATION_ID,
